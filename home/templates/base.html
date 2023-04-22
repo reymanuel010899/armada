@@ -194,11 +194,12 @@
             <div class="mobilemenu_profile">
             <img id="mobilemenu_profile_pic" src="{{user.avatar.url}} " /><br>
             <span>{{user.username}} <br><h5>No Aspirantes: {{cantidad_amigo}} </p></h5>
-            {% endif %}
+            {% else %}
             <img id="mobilemenu_portada" src="{{user.avatar.url}} " />
             <div class="mobilemenu_profile">
             <img id="mobilemenu_profile_pic" src="{{user.avatar.url}} " /><br>
             <span>{{user.username}} <br><h5>ID: {{user.id}} </p></h5>
+            {% endif %}
             {% endif %}
         </div>
     </div>
