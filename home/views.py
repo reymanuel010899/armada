@@ -232,11 +232,7 @@ def chats_usuarios(request, username):
     ultimos_mensaje_por_amigo=ChatModels.objects.ultimos_amigos(user)
     amigos_en_chat = AmigoModels.objects.filter(añadidos__id__in=ultimos_mensaje_por_amigo).distinct('añadidos__id',)[:10]
     if request.method == "GET":
-        mensaje =  ChatModels.objects.filter(user=user, amigo=amigo).first()
-        if mensaje:
-            if  mensaje.amigo.añadidos.username != mensaje.user.username: 
-                ChatVistoModels.objects.get_or_create(mensaje=mensaje, amigo=amigo,)
-
+        mensaje =  ChatModels.objects.filter(user=user, amigo=amigo).first()       
         return  render(request, 'chats.html',{"amigos":amigo,'messege':mensajes, 'amigos_chats':amigos_en_chat})
     else:
         buscar =  request.POST.get('buscar','')
