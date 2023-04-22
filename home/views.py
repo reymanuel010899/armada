@@ -63,7 +63,7 @@ def  perfil(request, username):
        
     status = PostaspirantesModels.objects.filter(user__username=username).order_by('-created')
     ultimas_fotos = PostaspirantesModels.objects.filter(user=usuario).order_by('created')[:10]
-    amigos_comun = AmigoModels.objects.obtener_amigos_en_comun(usuario, user )[:5]
+    amigos_comun = AmigoModels.objects.obtener_amigos_en_comun(usuario, user ).exclude(user=request.user)[:5]
     notificaciones= NotificacionesModels.objects.notificaciones(request.user)[:5]
     compatido =  ConpartirModels.objects.compartidos(usuario) 
     usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(user=request.user) [:10]

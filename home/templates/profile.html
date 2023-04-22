@@ -175,7 +175,7 @@
                     {% if not noti.amigo %}
                     <div class="row_contain">
                         <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
-                        <span><a href="{% url 'inicio_app:agregar-amigos' noti.solicitud.user.username %} " class="selected-orange">{{noti.mensaje}} </a>..</span>
+                        <span><a href=" " class="selected-orange">{{noti.mensaje}} </a>..</span>
                     </div>
                     {% endif %}
                         
@@ -184,14 +184,14 @@
                     {% elif noti.amigo %}
                     <div class="row_contain">
                         <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
-                        <span><a href="{% url 'inicio_app:chat-usuario' noti.amigo.añadidos.username %} " class="selected-blue">{{noti.mensaje}}</a>..</span>
+                        <span><a href="" class="selected-blue">{{noti.mensaje}}</a>..</span>
                     </div> 
                     {% endif %}
                 {% else %}
                     {% if not noti.amigo %}
                         <div class="row_contain">
                             <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
-                            <span><a href=" " class="selected-orange">{{noti.mensaje}} </a>..</span>
+                            <span><a href=" {% url 'inicio_app:agregar-amigos' noti.solicitud.user.username %}" class="selected-orange">{{noti.mensaje}} </a>..</span>
                         </div>
                
                             
@@ -200,7 +200,7 @@
                     {% elif noti.amigo %}
                     <div class="row_contain">
                         <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
-                        <span><a href=" " class="selected-blue">{{noti.mensaje}}</a>..</span>
+                        <span><a href="{% url 'inicio_app:chat-usuario' noti.amigo.añadidos.username %}" class="selected-blue">{{noti.mensaje}}</a>..</span>
                     </div> 
                     {% endif %}
                 {% endif %}
