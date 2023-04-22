@@ -170,7 +170,8 @@
                 </div>
 
                 {% for noti in notificaciones %}
-                    {% if noti.solicitud %}
+                {% if user.is_superuser %}
+                {% if noti.solicitud %}
                     {% if not noti.amigo %}
                     <div class="row_contain">
                         <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
@@ -186,6 +187,23 @@
                         <span><a href="{% url 'inicio_app:chat-usuario' noti.amigo.añadidos.username %} " class="selected-blue">{{noti.mensaje}}</a>..</span>
                     </div> 
                     {% endif %}
+                {% else %}
+                {% if not noti.amigo %}
+                    <div class="row_contain">
+                        <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
+                        <span><a href=" " class="selected-orange">{{noti.mensaje}} </a>..</span>
+                    </div>
+                    {% endif %}
+                        
+                    {% elif noti.comentarios.user.id == user.id %}
+                    
+                    {% elif noti.amigo %}
+                    <div class="row_contain">
+                        <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
+                        <span><a href=" " class="selected-blue">{{noti.mensaje}}</a>..</span>
+                    </div> 
+                    {% endif %}
+                    
                 {% endfor %}
             </div>
         </div>

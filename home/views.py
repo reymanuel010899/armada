@@ -24,7 +24,7 @@ def homeview(request):
     notificaciones = NotificacionesModels.objects.notificaciones(request.user).order_by('-created')[:5]
     uugerensias = AmigoModels.objects.sugerencias_amigos(request.user)
     sugerencia = User.objects.all()[:5]
-    usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True)[:10]
+    usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(user=request.user)[:10]
     if request.method == 'POST':
         contenido = request.POST.get('status','')
         archivo = request.FILES.get('files','')
@@ -66,7 +66,7 @@ def  perfil(request, username):
     amigos_comun = AmigoModels.objects.obtener_amigos_en_comun(usuario, user )[:5]
     notificaciones= NotificacionesModels.objects.notificaciones(request.user)[:5]
     compatido =  ConpartirModels.objects.compartidos(usuario) 
-    usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True)[:10]
+    usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(user=request.user) [:10]
     return render(request , 'profile.html',{"estados":status, 'usuario':usuario, 'ultimas':ultimas_fotos,
                                              'comunes':amigos_comun, 'numero':len(amigos_comun),
                                                'notificaciones':notificaciones, 'amigo_o_no':amigo_o_no,
@@ -151,7 +151,7 @@ def buscar_contenido_views(request):
         notificaciones = NotificacionesModels.objects.notificaciones(request.user).order_by('-created')[:5]
         uugerensias = AmigoModels.objects.sugerencias_amigos(request.user)
         sugerencia = User.objects.all()[:5]
-        usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True)[:10]
+        usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(user=request.user)[:10]
         if request.method == 'POST':
             contenido = request.POST.get('status','')
             archivo = request.FILES.get('files','')
