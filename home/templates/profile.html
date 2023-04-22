@@ -188,13 +188,13 @@
                     </div> 
                     {% endif %}
                 {% else %}
-                {% if not noti.amigo %}
-                    <div class="row_contain">
-                        <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
-                        <span><a href=" " class="selected-orange">{{noti.mensaje}} </a>..</span>
-                    </div>
+                    {% if not noti.amigo %}
+                        <div class="row_contain">
+                            <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
+                            <span><a href=" " class="selected-orange">{{noti.mensaje}} </a>..</span>
+                        </div>
                     {% endif %}
-                        
+                            
                     {% elif noti.comentarios.user.id == user.id %}
                     
                     {% elif noti.amigo %}
@@ -203,7 +203,7 @@
                         <span><a href=" " class="selected-blue">{{noti.mensaje}}</a>..</span>
                     </div> 
                     {% endif %}
-                    
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
