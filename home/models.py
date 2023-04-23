@@ -241,7 +241,7 @@ def convertir_video_o_imagenes(instance, sender, *args, **kwargs):
     formato = ''
     if archivo is not None:
         formato = archivo[-4:]
-        if formato == '.jpg' or formato == '.png' or formato == '.jpeg' or formato == '.webp':
+        if formato == '.jpg' or formato == '.png' or formato == 'jpeg' or formato == 'webp':
             PostModel.objects.filter(id=instance.id).update(images=archivo)
         elif formato == '.mp3' or formato == '.mp4':
             PostModel.objects.filter(id=instance.id).update(video=archivo)
