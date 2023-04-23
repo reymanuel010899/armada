@@ -24,7 +24,7 @@ def homeview(request):
     notificaciones = NotificacionesModels.objects.notificaciones(request.user).order_by('-created')[:5]
     uugerensias = AmigoModels.objects.sugerencias_amigos(request.user)
     sugerencia = User.objects.all()[:5]
-    usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(user=request.user)[:10]
+    usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(añadidos=request.user)[:10]
     if request.method == 'POST':
         contenido = request.POST.get('status','')
         archivo = request.FILES.get('files','')
