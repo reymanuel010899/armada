@@ -66,7 +66,7 @@ def  perfil(request, username):
     amigos_comun = AmigoModels.objects.obtener_amigos_en_comun(usuario, user ).exclude(user=request.user)[:5]
     notificaciones= NotificacionesModels.objects.notificaciones(request.user)[:5]
     compatido =  ConpartirModels.objects.compartidos(usuario) 
-    usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(user=request.user) [:10]
+    usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(añadidos=request.user) [:10]
     return render(request , 'profile.html',{"estados":status, 'usuario':usuario, 'ultimas':ultimas_fotos,
                                              'comunes':amigos_comun, 'numero':len(amigos_comun),
                                                'notificaciones':notificaciones, 'amigo_o_no':amigo_o_no,
