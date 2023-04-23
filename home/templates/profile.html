@@ -131,14 +131,14 @@
                     <span>Conectados..   + {{cantidad_conectados}} </span>
                 </div>
                 {% for activos in  usuarios_activos %}
-                {% if activos.user != user %}
+          
                 <div class="row_contain">
                     <img src="{{activos.añadidos.avatar.url}} " alt="" />
                     <span><a href="{% url 'inicio_app:chat-usuario' activos.añadidos.username %} " class="selected-orange">{{activos.añadidos.username}}</a><span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentCol" style="background-color: rgb(47, 240, 21); border-radius:15px;  margin-left:100% ;"   viewBox="0 0 0 16">
                         <path d="M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1A5 5 0 1 0 8 3a5 5 0 0 0 0 10z"/>
                       </svg></span></span>
                 </div>
-                {% endif %}
+              
              
                 {% endfor %}
             </div>
