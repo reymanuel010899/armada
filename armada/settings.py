@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-n(^uu34=h6@c04459s43)u=5frz5@eg0gop0fi!x9#g4wybw6z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 CSRF_TRUSTED_ORIGINS = ['https://armada-production.up.railway.app']
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'users',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -82,12 +83,17 @@ DATABASE_URL = "postgresql://postgres:Sibx1rGNTgfjZBX4yYll@containers-us-west-17
 
 
 DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
-    # {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-}
+       'default':dj_database_url.config(default=DATABASE_URL, conn_max_age=1800)
+       }
+# {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'database-1',
+#         'USER':'postgres',
+#         'HOST':'database-1.cr91qu0fn162.us-east-1.rds.amazonaws.com',
+#         'PASSWORD':'Catiteamo01',
+#         'PORT':5432
+#     }
+#}
 
 AUTH_USER_MODEL = 'users.User'
 # Password validation
@@ -124,18 +130,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    #STATIC_URL = 'static/'
+    #STATIC_ROOT = BASE_DIR / "staticfiles"
+    #STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR/ "media"
+    # MEDIA_URL = "/media/"
+    # MEDIA_ROOT = BASE_DIR/ "media"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
- 
-]
+    # STATICFILES_DIRS = [
+    #     BASE_DIR / "static",
+    
+    # ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -147,5 +153,26 @@ EMAIL_HOST_USER =  'socialkiptly@gmail.com'
 EMAIL_HOST_PASSWORD = 'yhjqipyhlnhhiwlj'
 EMAIL_USE_TLS = True
 
-   
 
+AWS_ACCESS_KEY_ID = "AKIASGUFTBD6U3L6QXA4"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "armadard"
+
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl':'max-age=86400'}
+AWS_DEFAULT_ACL = 'public-read'
+
+STATIC_LOCATION ="static"
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+DEFAULT_FILE_STORAGE = "home.storage_backend.MediaStore"
+
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+ 
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"
