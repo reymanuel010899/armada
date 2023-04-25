@@ -39,10 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'storages',
     'home',
     'users',
-    
 ]
 
 MIDDLEWARE = [
@@ -122,18 +120,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-# STATIC_URL = 'static/'
-# STATIC_ROOT = BASE_DIR / "staticfiles"
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-# MEDIA_URL = "/media/"
-# MEDIA_ROOT = BASE_DIR/ "media"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR/ "media"
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
  
-# ]
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -147,28 +145,3 @@ EMAIL_USE_TLS = True
 
 
 
-# aws s3
-
-AWS_ACCESS_KEY_ID = 'AKIASGUFTBD6YOPLRY5L'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGES_BUCKET_NAME = 'armadard'
-
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com'%AWS_STORAGES_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl':'max-age=86400'}
-AWSS_DEFAULT_ACL = 'public-read'
-
-AWS_LOCATION = 'STATIC'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
- 
-]
-
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATIC_URL = 'https://%s/%s/' %(AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-
-# MEDIA_URL = "/media/"
-# MEDIA_ROOT = BASE_DIR/ "media"
-
-PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-DEFAULT_FILE_STORAGE = 'home.storage_backend.MediaStore'
