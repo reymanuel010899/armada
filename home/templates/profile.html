@@ -24,29 +24,32 @@
                     </div>
                 </div>
             </div>
+ 
 
-            {% if user.id == usuario.id %}
-            <div class="row">
-                <div class="publish">
-                    <div class="row_title">
-                        <span><i class="fa fa-newspaper-o" aria-hidden="true"></i> Status</span>
-                    </div>
-                    <form method="POST" enctype="multipart/form-data" >{% csrf_token %}
-                        <div class="publish_textarea">
-                            <img class="border-radius-image" src=" {{usuario.avatar.url}}" alt="" />
-                            <textarea  name="status"  type="text" placeholder="¿Whats up, {{user.username}} ?" style="resize: none;"></textarea>
-                        </div>
-                        <div class="publish_icons">
-                            <ul> <input  type="file" name="files" id=""></a></i></li>
-
-                            </ul>
-                            <button style="background-color: #E5B907 ;">Publish</button>
-                        </div>
-                    </form>
-                </div>
+       {% if usuario.id == user.id or user.is_superuser %}
+       <div class="row">
+        <div class="publish">
+            <div class="row_title">
+                <span><i class="fa fa-newspaper-o" aria-hidden="true"></i> Status</span>
             </div>
-            {% else %}
-            {% endif %}
+            <form method="POST" enctype="multipart/form-data" >{% csrf_token %}
+                <div class="publish_textarea">
+                    <img class="border-radius-image" src=" {{usuario.avatar.url}}" alt="" />
+                    <textarea  name="status"  type="text" placeholder="¿Whats up, {{user.username}} ?" style="resize: none;"></textarea>
+                </div>
+                <div class="publish_icons">
+                    <ul><input  type="file" name="files" id=""></a></i></li>
+                    </ul>
+                    <button style="background-color: #E5B907 ;">Publish</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+       {% endif %}
+         
+
+
             {% for stat in  compartidos %}
             <div class="row border-radius">
                 <div class="feed">
@@ -77,7 +80,8 @@
                 {% if stat.user == user %}
                 <a href="{% url  'inicio_app:eliminar-documentos' stat.id %}"><span style="margin-left: 98%;">x</span></a>
                 {% endif %}
-               
+               {% if stat.archivo %}
+                 {% if stat.imagenes %}
                 <div class="feed">
                     <div class="feed_title">
                         <img src="{{usuario.avatar.url}}"  alt="" />
@@ -94,9 +98,9 @@
                     <div class="feed_footer">
                     </div>
                 </div>
+                {% endif %}
+                {% endif %}
             </div>
-          
-
             {% endfor %}
             <center>
                 <a href=""><div class="loadmorefeed">
@@ -116,10 +120,9 @@
                 <div class="row_contain_profilephotos">
                     <ul>
                         {% for ultima in ultimas  %}
-                  
+                            {% if ultima.imagenes %}
                             <li><a href=" "><img src="{{ultima.archivo.url}} " alt="" /></a></li>
-             
-                        
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
@@ -202,6 +205,25 @@
                 {% endif %}
                 {% endfor %}
             </div>
+            {% if user.is_superuser %}
+            <div class="row_title">
+                <span>ARCHIVOS PDF</span>
+            </div>
+            {% endif %}
+            
+            {% for archivo in archivo_pdf %}
+            {% if user.is_superuser %}
+            {% if archivo.pdf %}
+            <div class="row_contain">
+                <img src="{{archivo.user.avatar.url}} " alt="" />
+                <span><h3><a href="{{archivo.archivo.url}} " class="selected-orange">{{archivo.descripcion}}</a></h3></span>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+
+
+
         </div>
     </div>
 

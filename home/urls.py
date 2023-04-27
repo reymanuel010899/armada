@@ -39,7 +39,8 @@ urlpatterns = [
     path('sugerencia-amigo/', views.sugerencias_amigos_views, name="sugerencia-amigo"),
     path('comentar-post-profile/<pk>/',  views.comentar_post, name="comentar-post-profile" ),
     path('eliminar-documentos/<pk>/', views.eliminar_documentos, name="eliminar-documentos"),
-    path('elimicar-post/<pk>/', views.eliminar_post, name="elimicar-post")
+    path('elimicar-post/<pk>/', views.eliminar_post, name="elimicar-post"),
+    #path('agregar-archivo/<pk>/', views.agregar_archivos_pdf, name="agregar-archivo-pdf")
     # path('cambiar-perfil/', views.cambiar_perfil, name="cambiar-perfil")
     #path('cambiar-contraseña/', views.cambiar_contraseña, name="cambiar-contraseña"),
     

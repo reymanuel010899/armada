@@ -27,4 +27,4 @@ class usermaneyer(BaseUserManager):
         if contenido.isdigit():
             return self.filter(Q(username__icontains=contenido)|Q(post_user_reverse__descripcion__icontains=contenido)|Q(id=contenido)).distinct()
         else:
-            return self.filter(Q(username__icontains=contenido)|Q(post_user_reverse__descripcion__icontains=contenido)).distinct()
+            return self.filter(Q(username__icontains=str(contenido).lower())|Q(post_user_reverse__descripcion__icontains=contenido)).distinct()

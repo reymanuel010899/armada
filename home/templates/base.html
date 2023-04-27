@@ -68,7 +68,7 @@
                         <img id="portada" style="border-radius: 15px;"  src="{{persona.avatar.url}}"/>
                         <div class="left_row_profile">
                         <img id="profile_pic"   src="{{persona.avatar.url}}"/>
-                        <span><h3>{{persona.username}}</h3> ID: {{user.id}} </span>
+                        <span><h3>{{persona.username}}</h3> ID: {{persona.id}} </span>
                         {% endif %}
            
                     {% elif usuario  %}
@@ -82,7 +82,7 @@
                             <img id="portada" style="border-radius:15px;"  src="{{usuario.avatar.url}}"/>
                             <div class="left_row_profile">
                             <img id="profile_pic"  src="{{usuario.avatar.url}} " />
-                            <span><h3>{{usuario.username}} </h3> ID: {{user.id}} </span>
+                            <span><h3>{{usuario.username}} </h3> ID: {{usuario.id}} </span>
                             {% endif %}
                   
                     {% elif  usuarios %}
@@ -90,7 +90,7 @@
                     <img id="portada" style="border-radius: 15px;"  src="{{usuarios.avatar.url}}"/>
                     <div class="left_row_profile">
                     <img id="profile_pic"   src="{{usuarios.avatar.url}}"/>
-                    <span><h3>{{usuarios.username}}</h3>ID: {{user.id}} </span>
+                    <span><h3>{{usuarios.username}}</h3>ID: {{usuarios.id}} </span>
                     {% else %}
 
                         {% if user.is_superuser %}
@@ -165,7 +165,7 @@
                 img id="mobilemenu_portada" src="{{usuario.avatar.url}} " />
                 <div class="mobilemenu_profile">
                 <img id="mobilemenu_profile_pic" src="{{usuario.avatar.url}} " /><br>
-                <span >{{usuario.username}} <br><h5> ID: {{user.id}} </h5></span>
+                <span >{{usuario.username}} <br><h5> ID: {{persona.id}} </h5></span>
                 {% endif %}
       
             {% elif usuario %}
@@ -178,7 +178,7 @@
                 <img id="mobilemenu_portada" src="{{usuario.avatar.url}} " />
                 <div class="mobilemenu_profile">
                 <img id="mobilemenu_profile_pic" src="{{usuario.avatar.url}} " /><br>
-                <span >{{usuario.username}} <br><h5>  ID: {{user.id}} </h5></span>
+                <span >{{usuario.username}} <br><h5>  ID: {{usuario.id}} </h5></span>
                 {% endif %}
      
 
@@ -186,7 +186,7 @@
             <img id="mobilemenu_portada" src="{{usuarios.avatar.url}} " />
             <div class="mobilemenu_profile">
             <img id="mobilemenu_profile_pic" src="{{usuarios.avatar.url}} " /><br>
-            <span>{{usuarios.username}} <br><h5> ID: {{user.id}} </p></h5>
+            <span>{{usuarios.username}} <br><h5> ID: {{usuarios.id}} </p></h5>
 
             {% else %}
             {% if user.is_superuser %}

@@ -56,9 +56,9 @@ def  perfil(request, username):
         contenido = request.POST.get('status','')
         archivo = request.FILES.get('files')
         if contenido and archivo:
-            PostaspirantesModels.objects.create(user=user, archivo=archivo,  descripcion=contenido)
+            PostaspirantesModels.objects.create(user=usuario, archivo=archivo,  descripcion=contenido)
         elif contenido or archivo:
-            PostaspirantesModels.objects.create(user=user, archivo=archivo, descripcion=contenido)
+            PostaspirantesModels.objects.create(user=usuario, archivo=archivo, descripcion=contenido)
       
        
     status = PostaspirantesModels.objects.filter(user__username=username).order_by('-created')
@@ -66,14 +66,15 @@ def  perfil(request, username):
     amigos_comun = AmigoModels.objects.obtener_amigos_en_comun(usuario, user ).exclude(user=request.user)[:5]
     notificaciones= NotificacionesModels.objects.notificaciones(request.user)[:5]
     compatido =  ConpartirModels.objects.compartidos(usuario) 
-    usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(añadidos=request.user) [:10]
+    usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(añadidos=request.user)[:10]
+    archivo_pdf = PostaspirantesModels.objects.filter(user=usuario).order_by('-created')[:5]
     return render(request , 'profile.html',{"estados":status, 'usuario':usuario, 'ultimas':ultimas_fotos,
                                              'comunes':amigos_comun, 'numero':len(amigos_comun),
                                                'notificaciones':notificaciones, 'amigo_o_no':amigo_o_no,
                                                  'cantidad_like':cant_like,'cantidad_post':cant_post,
                                                    'cantidad_amigos':cant_amigos, 'compartidos':compatido,
                                                      'usuarios_activos':usuarios_activos, 'cantidad_conectados':usuarios_activos.count(),
-                                                      'enviada':solicitud})
+                                                      'enviada':solicitud, 'archivo_pdf':archivo_pdf})
 
 
 
@@ -212,7 +213,7 @@ def añadir_a_amigos(request, username):
 
 @login_required(login_url='users_app:registrar')
 def amigos_añadidos(request):
-    amigos = AmigoModels.objects.filter(user=request.user)
+    amigos = AmigoModels.objects.filter(user=request.user).exclude(añadidos=request.user)
     paginator = Paginator(amigos, 20)
     num_page = request.GET.get('page')
     page = paginator.get_page(num_page)
@@ -358,3 +359,16 @@ def eliminar_post(request, pk):
         post=PostModel.objects.get(id=pk)
         post.delete()
         return redirect('inicio_app:inicio')
+    
+    
+# def agregar_archivos_pdf(request, pk=None):
+#     if pk != None:
+#         user = User.objects.get(id=pk)
+#         archivo = request.FILES.get('files','')
+#         descripcion = request.POST.get('status','')
+#         if archivo != '' and descripcion != '':
+#             PostaspirantesModels.objects.create(user=user, archivo=archivo, descripcion=descripcion)
+#         else:
+#               PostaspirantesModels.objects.create(user=user, archivo=archivo)
+#         return redirect('inicio_app:profile', username=user.username )
+    

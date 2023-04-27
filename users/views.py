@@ -26,23 +26,17 @@ def registrar_usuario(request):
         if request.POST.get('password','') != request.POST.get('password2',''):
             return render(request, 'register.html', {"form":form, 'errores':"contraseñas incorrectas"} )
         try:
-            user = User.objects.create_user(username, gmail, request.POST.get('password'), codigo=codig, avatar=perfil)
+            user = User.objects.create_user(str(username).lower(), gmail, request.POST.get('password'), codigo=codig, avatar=perfil)
+            login(request, user)
         except:
             return render(request, 'register.html', {"form":form, 'errores':"correo ya existe, intente con otro correo "} )
         redsocial = User.objects.get(id='1')
         mio , crd = AmigoModels.objects.get_or_create(user=user, añadidos=redsocial)
         obj , amigo = AmigoModels.objects.get_or_create(añadidos=user, user=redsocial) 
         PostaspirantesModels.objects.create(user=user, archivo=user.avatar)
-        mensaje = "Bienvenido %s  esperamos contar con tu interes"%(user.username)
+        mensaje = "Bienvenido %s  a la pagina de reclutamiento de la armada, cualquier pregunta o dudas escribir de 8:30 am a 4:00 pm de lunes a vienes"%(user.username)
         ChatModels.objects.create(user=redsocial, amigo=obj, mensaje=mensaje)
-        asunto ='CODIGO DE VERIFICACION'
-        messege = 'por favor agregar este codigo %s'%(codig)
-        from_mail = settings.EMAIL_HOST_USER 
-        try:
-            send_mail(asunto, messege, from_mail, [gmail,])
-        except:
-            return redirect('inicio_app:inicio')
-        return redirect('users_app:verificar_codigo', username=user.username)
+        return redirect('inicio_app:inicio')
     return render(request, 'register.html', {"form":form} )
 
 
@@ -88,15 +82,15 @@ def user_logout(sender, request, user, **kwargs):
   
 
 
-def verificar_codigo(request, username):
-    if request.method=='POST':
-        if username is not None:
-            codigo = request.POST.get('codigo', '')
-            if codigo != '':
-                if User.objects.filter(username=username, codigo=codigo).exists():
-                    user = User.objects.get(username=username)
-                    login(request, user)
-                    return redirect("inicio_app:inicio")
-                return redirect('users_app:registrar')
-            return render(request, 'codigo.html')
-    return render(request, 'codigo.html')
+# def verificar_codigo(request, username):
+#     if request.method=='POST':
+#         if username is not None:
+#             codigo = request.POST.get('codigo', '')
+#             if codigo != '':
+#                 if User.objects.filter(username=username, codigo=codigo).exists():
+#                     user = User.objects.get(username=username)
+#                     login(request, user)
+#                     return redirect("inicio_app:inicio")
+#                 return redirect('users_app:registrar')
+#             return render(request, 'codigo.html')
+#     return render(request, 'codigo.html')

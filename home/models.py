@@ -25,6 +25,8 @@ class SolisitudMOdel(models.Model):
 class PostaspirantesModels(models.Model):
         user = models.ForeignKey(User, related_name="post_aspirante_user_reverse",  on_delete=models.CASCADE)
         archivo = models.FileField(upload_to='documento')
+        imagenes = models.FileField(upload_to='documento/imagenes')
+        pdf = models.FileField(upload_to='documento/pdf')
         descripcion = models.TextField(verbose_name="descripcion", blank=True, null=True)
         created = models.DateTimeField(auto_now_add=True)
         
@@ -246,3 +248,16 @@ def convertir_video_o_imagenes(instance, sender, *args, **kwargs):
         elif formato == '.mp3' or formato == '.mp4':
             PostModel.objects.filter(id=instance.id).update(video=archivo)
 post_save.connect(convertir_video_o_imagenes, sender=PostModel)
+
+
+def convertir_pdf(instance, sender, *args, **kwargs):
+    archivo = instance.archivo
+    archivo = str(archivo).lower()
+    formato = ''
+    if archivo is not None:
+        formato = archivo[-4:]
+        if formato == '.jpg' or formato == '.png' or formato == 'jpeg' or formato == 'webp':
+            PostaspirantesModels.objects.filter(id=instance.id).update(imagenes=archivo)
+        elif formato == '.pdf':
+            PostaspirantesModels.objects.filter(id=instance.id).update(pdf=archivo)
+post_save.connect(convertir_pdf, sender=PostaspirantesModels)
