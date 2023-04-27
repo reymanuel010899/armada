@@ -12,19 +12,19 @@
             <div class="settings_content">
                 <form method="post">{% csrf_token %}
                     <div class="pi-input pi-input-lg">
-                        <span>First Name</span>
+                        <span>Nombre</span>
                         <input type="text" value=" {{user.username}}" Name="nombre" />
                     </div>
                     <div class="pi-input pi-input-lg">
-                        <span>Last Name</span>
+                        <span>Apellido</span>
                         <input type="text" value="{{user.apellido}}" name="apellido" />
                     </div>
                     <div class="pi-input pi-input-lg">
-                        <span>Your Website</span>
+                        <span>link red social</span>
                         <input type="url" value="ferrule.space/" name="webside"/>
                     </div>
                     <div class="pi-input pi-input-lg">
-                        <span>Your Birthday</span>
+                        <span>Fecha de nacimiento</span>
                         <input type="date" value="1985-01-08" name="cumpleaño" />
                     </div>
                     <div class="pi-input pi-input-lg">
@@ -32,17 +32,26 @@
                         <input type="text" placeholder="escribe tu numero" name="telefono" />
                     </div>
                     <div class="pi-input pi-input-lg">
-                        <span>pais</span>
+                        <span>Pais</span>
                         <input type="text" placeholder="escripe tu pais" Name="pais" />
                     </div>
                     <div class="pi-input pi-input-lg">
-                        <span>provincia</span>
+                        <span>Provincia</span>
                         <input type="text" placeholder="escribe tu provincia" name="provincia" />
                     </div>
                     <div class="pi-input pi-input-lg">
-                        <span>municipio</span>
+                        <span>Municipio</span>
                         <input type="text" placeholder="escribe tu municipio" name="municipio" />
                     </div>
+                    <div class="pi-input pi-input-lg">
+                        <span>Direccion</span>
+                        <input type="text" placeholder="escribe tu municipio" name="direccion" />
+                    </div>
+                    <div class="pi-input pi-input-lg">
+                        <span>Cedula</span>
+                        <input type="text" placeholder="escribe tu municipio" name="cedula" />
+                    </div>
+
                     <div class="pi-input pi-input-lg">
                         <input type="text" name="genero">
                         <span>Your Gender</span>
