@@ -311,7 +311,7 @@ def feed_views(request, pk):
 
 @login_required(login_url='users_app:registrar')
 def compartir_post(request, pk):
-    amigos = AmigoModels.objects.filter(user=request.user)
+    amigos = AmigoModels.objects.filter(user=request.user).distinct('añadidos__username')
     post = PostModel.objects.get(id=pk)
     pk_amigo = request.GET.get('agregar','')
     if pk_amigo != '':
