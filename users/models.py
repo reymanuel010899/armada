@@ -57,7 +57,7 @@ class InformacionPersonal(models.Model):
     estado = models.CharField(max_length=50, blank=True, null=True)
     pais = models.CharField(max_length=50, blank=True, null=True)
     status = models.CharField(verbose_name="estado civil", max_length=20, blank=True, null=True)
-    telefono = models.CharField(max_length=20, blank=True, null=True)
+    telefono = models.CharField(max_length=40, blank=True, null=True)
     direcion  = models.TextField(blank=True, null=True)
     cedula = models.CharField(max_length=20, blank=True, null=True)
     descripcion = models.TextField(verbose_name="describete", blank=True)

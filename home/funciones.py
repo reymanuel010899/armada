@@ -21,7 +21,7 @@ def actualizarperfil(request):
     soltero = request.POST.get("soltero","")
     descripcion = request.POST.get('descripcion','')
     cedula = request.POST.get('cedula','')
-    direcion = request.POST.get('direccion','')    
+    direcion = request.POST.get('direcion','')    
 
     upd, crd=User.objects.update_or_create( 
             gmail=request.user.gmail,
@@ -46,7 +46,7 @@ def actualizarperfil(request):
         "status":casado if casado != '' else soltero,
         "telefono":telefono,
         "descripcion":descripcion,
-        "direccion":direcion,
+        "direcion":direcion,
         "cedula":cedula
 
         }
