@@ -3,9 +3,13 @@ from .models import (SolisitudMOdel, AmigoModels, ChatModels, PostModel, LikeMod
                      NotificacionesModels,ComentarioLike,
                  PostaspirantesModels   )
 
+class UsermodelAdmin(admin.ModelAdmin):
+    list_display = ('user','añadidos','created')
+    search_fields = ('user__username',)
+
 # Register your models here.
 admin.site.register(SolisitudMOdel)
-admin.site.register(AmigoModels)
+admin.site.register(AmigoModels, UsermodelAdmin)
 admin.site.register(PostModel)
 admin.site.register(LikeModels)
 admin.site.register(ComentarModels)

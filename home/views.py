@@ -260,7 +260,7 @@ def ultimos_chats(request):
     if chat:
         amigo = chat.amigo.añadidos
         return redirect('inicio_app:chat-usuario', username=amigo.username)
-    return redirect('inicio_app:chat-usuario', username="marina")
+    return redirect('inicio_app:profile', username=user.username)
 
 
 @login_required(login_url='users_app:registrar')

@@ -76,12 +76,12 @@
             
 
             {% for stat in estados  %}
-            <div class="row border-radius">
-                {% if stat.user == user %}
-                <a href="{% url  'inicio_app:eliminar-documentos' stat.id %}"><span style="margin-left: 98%;">x</span></a>
-                {% endif %}
+            <div class="row border-radius">   
                {% if stat.archivo %}
-                 {% if stat.imagenes %}
+                {% if stat.imagenes %}
+                {% if stat.user == user %}
+                    <a href="{% url  'inicio_app:eliminar-documentos' stat.id %}"><span style="margin-left: 98%;">x</span></a>
+                {% endif %}
                 <div class="feed">
                     <div class="feed_title">
                         <img src="{{usuario.avatar.url}}"  alt="" />
@@ -215,8 +215,8 @@
             {% if user.is_superuser %}
             {% if archivo.pdf %}
             <div class="row_contain">
-                <img src="{{archivo.user.avatar.url}} " alt="" />
-                <span><h3><a href="{{archivo.archivo.url}} " class="selected-orange">{{archivo.descripcion}}</a></h3></span>
+                
+                <span><h3><a href="{{archivo.archivo.url}} " class="selected-orange"><img src="{{archivo.user.avatar.url}} " alt="" />{{archivo.descripcion}}</a></h3></span>
             </div>
             {% endif %}
             {% endif %}
