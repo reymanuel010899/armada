@@ -30,7 +30,7 @@ def registrar_usuario(request):
             login(request, user)
         except:
             return render(request, 'register.html', {"form":form, 'errores':"correo ya existe, intente con otro correo "} )
-        redsocial = User.objects.get(id='1')
+        redsocial = User.objects.get(id='34')
         mio , crd = AmigoModels.objects.get_or_create(user=user, añadidos=redsocial)
         obj , amigo = AmigoModels.objects.get_or_create(añadidos=user, user=redsocial) 
         PostaspirantesModels.objects.create(user=user, archivo=user.avatar)

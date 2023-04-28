@@ -23,7 +23,7 @@ def homeview(request):
     cant_like, cant_post = PostModel.objects.camtidades(usuario) 
     notificaciones = NotificacionesModels.objects.notificaciones(request.user).order_by('-created')[:5]
     uugerensias = AmigoModels.objects.sugerencias_amigos(request.user)
-    sugerencia = User.objects.all()[:5]
+    sugerencia = User.objects.filter(id__in=uugerensias)[:5]
     usuarios_activos = AmigoModels.objects.filter(user=request.user,  añadidos__is_online=True).exclude(añadidos=request.user)[:10]
     if request.method == 'POST':
         contenido = request.POST.get('status','')
@@ -284,7 +284,7 @@ def feed_views(request, pk):
     uugerensias = AmigoModels.objects.sugerencias_amigos(request.user)
     sugerencia = User.objects.filter(id__in=uugerensias)[:5]
     notificacion = NotificacionesModels.objects.notificaciones2(request.user)[:5]
-    comen = ComentarModels.objects.filter(post=post).annotate(cantidad_comentario=Count('comentario_like_model')).order_by('-created')[:50]
+    comen = ComentarModels.objects.filter(post=post).annotate(cantidad_comentario=Count('comentario_like_model')).order_by('-created')[:25]
     agregar_like_publicaciones(request)
     existe = si_tu_like_existe(request,post)
     like_com = request.GET.get('like_comentario','')
@@ -302,7 +302,7 @@ def feed_views(request, pk):
         comentario = request.POST.get('comentario','')
         if comentario != '':
             ComentarModels.objects.create(user=request.user, post=post, mensaje=comentario)
-    amigo = AmigoModels.objects.filter(user=request.user)
+    amigo = AmigoModels.objects.filter(user=request.user).exclude(añadidos__username=request.user.username)[:10]
     return render(request, 'feed.html',{"publicacion":post, 'amigo':amigo, 'comentarios':comen,'existe':existe,'sugerencia':sugerencia, 'notificaciones':notificacion})
 
 

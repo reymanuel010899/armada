@@ -5,7 +5,8 @@ from .models import (SolisitudMOdel, AmigoModels, ChatModels, PostModel, LikeMod
 
 class UsermodelAdmin(admin.ModelAdmin):
     list_display = ('user','añadidos','created')
-    search_fields = ('user__username',)
+    search_fields = ('user__username','user__id')
+    list_filter = ('user',)
 
 # Register your models here.
 admin.site.register(SolisitudMOdel)

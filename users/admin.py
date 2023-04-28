@@ -8,7 +8,8 @@ class UsermodelAdmin(admin.ModelAdmin):
 class informacionAdmin(admin.ModelAdmin):
     search_fields = ('user__username', 'user__id')
     list_display = ('user', 'cedula', 'telefono','direcion','pais')
-
+    list_filter = ('user',)
+    
 admin.site.register(User, UsermodelAdmin)
 admin.site.register(InformacionPersonal,informacionAdmin)
 admin.site.register(UserActivity)
