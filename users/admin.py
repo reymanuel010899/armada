@@ -4,11 +4,13 @@ from .models import User, InformacionPersonal, UserActivity
 class UsermodelAdmin(admin.ModelAdmin):
     list_display = ('username','gmail','genero','ubicacion', 'id')
     search_fields = ('username','id')
-
+    list_filter = ('created',)
+    date_hierarchy = ('created',)
+    
 class informacionAdmin(admin.ModelAdmin):
     search_fields = ('user__username', 'user__id')
     list_display = ('user', 'cedula', 'telefono','direcion','pais')
-    list_filter = ('user',)
+ 
     
 admin.site.register(User, UsermodelAdmin)
 admin.site.register(InformacionPersonal,informacionAdmin)
