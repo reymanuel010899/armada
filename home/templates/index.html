@@ -157,31 +157,37 @@
                 </div>
                 {% for noti in notificaciones  %}
                 {% if user.is_superuser %}
-                {% if noti.amigo %}
-                <div class="row_contain">
-                    <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
-                    <span><a href="" class="selected-blue">{{noti.mensaje}}</a>..</span>
-                </div> 
-                {% elif noti.solicitud %}
-                <div class="row_contain">
-                    <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
-                    <span><a href="" class="selected-orange">{{noti.mensaje}} </a>..</span>
-                </div>
+                    {% if noti.amigo %}
+                        <div class="row_contain">
+                            <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
+                            <span><a href="" class="selected-blue">{{noti.mensaje}}</a>..</span>
+                        </div> 
+                    {% elif noti.solicitud %}
+                        <div class="row_contain">
+                            <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
+                            <span><a href="" class="selected-orange">{{noti.mensaje}} </a>..</span>
+                        </div>
+                    {% else %}
+                        {% if noti.amigo %}
+                        <div class="row_contain">
+                            <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
+                            <span><a href="{% url 'inicio_app:chat-usuario' noti.amigo.añadidos.username %} " class="selected-blue">{{noti.mensaje}}</a>..</span>
+                        </div> 
+                        {% elif noti.solicitud %}
+                        <div class="row_contain">
+                            <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
+                            <span><a href="{% url 'inicio_app:agregar-amigos' noti.solicitud.user.username %} " class="selected-orange">{{noti.mensaje}} </a>..</span>
+                        </div>
+                        {% endif %}
+                    {% endif %}
                 {% else %}
-                {% if noti.amigo %}
-                <div class="row_contain">
-                    <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
-                    <span><a href="{% url 'inicio_app:chat-usuario' noti.amigo.añadidos.username %} " class="selected-blue">{{noti.mensaje}}</a>..</span>
-                </div> 
-                {% elif noti.solicitud %}
-                <div class="row_contain">
-                    <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
-                    <span><a href="{% url 'inicio_app:agregar-amigos' noti.solicitud.user.username %} " class="selected-orange">{{noti.mensaje}} </a>..</span>
-                </div>
+                        {% if noti.amigo %}
+                        <div class="row_contain">
+                            <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
+                            <span><a href="{% url 'inicio_app:chat-usuario' noti.amigo.añadidos.username %} " class="selected-blue">{{noti.mensaje}}</a>..</span>
+                        </div> 
+                        {% endif %}
                 {% endif %}
-                {% endif %}
-                {% endif %}
-                 
                 {% endfor %}       
             </div>
         </div>
