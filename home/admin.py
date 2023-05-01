@@ -5,7 +5,7 @@ from .models import (SolisitudMOdel, AmigoModels, ChatModels, PostModel, LikeMod
 
 class UsermodelAdmin(admin.ModelAdmin):
     list_display = ('user','añadidos','created')
-    search_fields = ('user__username','user__id')
+    search_fields = ('user__username','id')
     list_filter = ('created',)
     date_hierarchy = "created"
  
