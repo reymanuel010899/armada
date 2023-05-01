@@ -159,15 +159,6 @@ class ChatModels(models.Model):
 
 
 
-# def optimizar_imagen(sender, instance, **kwards):
-#     if instance.archivo:
-#         archivo = Image.open(instance.archivo.path)
-#         archivo.save(instance.archivo.path, quality=30, optimize=True)
-   
-# post_save.connect(optimizar_imagen, sender=PostModel)   
-
-
-
 
 def ha_acectado_la_solicitud(instance, sender, *args, **kwargs):
     id_añadido = instance.user.id

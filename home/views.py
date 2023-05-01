@@ -14,7 +14,6 @@ from .forms import  userupdateavatar
 
 @login_required(login_url='users_app:registrar')
 def homeview(request):
-    #activo = seciones_activas(request)
     usuario = User.objects.get(username=request.user.username)
     agregar_like_publicaciones(request)
     post_comentario = PostModel.objects.all().order_by("-created")
@@ -104,14 +103,6 @@ def perfil_setting_views(request):
        
     return  render(request , 'perfil.html', {'form':form})
 
-
-
-# @login_required(login_url='users_app:registrar')
-# def  perfil_setting_views(request):
-#     if request.method == 'GET':
-#         return render(request , 'perfil.html')
-#     else:        
-       
 
 
 
@@ -326,9 +317,7 @@ def compartir_post(request, pk):
 @login_required(login_url='users_app:registrar')
 def sugerencias_amigos_views(request):
     if request.method == "GET":
-        # uugerensias = AmigoModels.objects.sugerencias_amigos(request.user)
         sugerencia = User.objects.all().exclude(username=request.user.username)
-        # SolisitudMOdel.objects.filter(user__in=sugerencia).exists()
         return render(request, 'sugerencia-amigo.html', {"sugerencias":sugerencia})
     
 
@@ -360,15 +349,4 @@ def eliminar_post(request, pk):
         post.delete()
         return redirect('inicio_app:inicio')
     
-    
-# def agregar_archivos_pdf(request, pk=None):
-#     if pk != None:
-#         user = User.objects.get(id=pk)
-#         archivo = request.FILES.get('files','')
-#         descripcion = request.POST.get('status','')
-#         if archivo != '' and descripcion != '':
-#             PostaspirantesModels.objects.create(user=user, archivo=archivo, descripcion=descripcion)
-#         else:
-#               PostaspirantesModels.objects.create(user=user, archivo=archivo)
-#         return redirect('inicio_app:profile', username=user.username )
     
