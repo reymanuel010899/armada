@@ -8,6 +8,11 @@ class UsermodelAdmin(admin.ModelAdmin):
     search_fields = ('user__username','user__id')
     list_filter = ('user',)
 
+class Postadmin(admin.ModelAdmin):
+    list_display =  ('user', 'descripcion','created','id')
+    search_fields = ('descripcion',)
+    
+    
 # Register your models here.
 admin.site.register(SolisitudMOdel)
 admin.site.register(AmigoModels, UsermodelAdmin)
@@ -18,4 +23,4 @@ admin.site.register(ConpartirModels)
 admin.site.register(NotificacionesModels)
 admin.site.register(ChatModels)
 admin.site.register(ComentarioLike)
-admin.site.register(PostaspirantesModels)
+admin.site.register(PostaspirantesModels, Postadmin)
