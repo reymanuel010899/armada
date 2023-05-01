@@ -5,6 +5,7 @@ class UsermodelAdmin(admin.ModelAdmin):
     list_display = ('username','gmail','genero','ubicacion', 'id')
     search_fields = ('username','id')
     list_filter = ('created',)
+    date_hierarchy = "created"
 
     
 class informacionAdmin(admin.ModelAdmin):

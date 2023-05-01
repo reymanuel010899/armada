@@ -7,13 +7,14 @@ class UsermodelAdmin(admin.ModelAdmin):
     list_display = ('user','añadidos','created')
     search_fields = ('user__username','user__id')
     list_filter = ('created',)
+    date_hierarchy = "created"
  
     
 class Postadmin(admin.ModelAdmin):
     list_display =  ('user', 'descripcion','created','id')
     search_fields = ('descripcion',)
     list_filter = ('created',)
-
+    date_hierarchy ="created"
     
     
 # Register your models here.
