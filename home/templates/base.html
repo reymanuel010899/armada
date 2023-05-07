@@ -97,7 +97,7 @@
                         {% if user.avatar %}
                         <img id="portada" style="border-radius: 15px;"  src="{{user.avatar.url}}"/>
                         {% else %}
-                        <img id="portada" style="border-radius: 15px;"  src=""/>
+                        <img id="portada" style="border-radius: 15px;"  src="{{user.avatar.url}} "/>
                         {% endif %}
                      
                         <div class="left_row_profile">
@@ -157,7 +157,7 @@
             
             {% if persona %}
                 {% if user.is_superuser %}
-                img id="mobilemenu_portada" src="{{usuario.avatar.url}} " />
+                <img id="mobilemenu_portada" src="{{usuario.avatar.url}} " />
                 <div class="mobilemenu_profile">
                 <img id="mobilemenu_profile_pic" src="{{usuario.avatar.url}} " /><br>
                 <span >{{usuario.username}} <br><h5>No Aspirantes:  {{cantidad_amix}} </h5></span>
