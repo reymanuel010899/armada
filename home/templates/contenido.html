@@ -18,7 +18,7 @@
                             <div class="publish_icons">
                                 <ul><input  type="file" name="files" ></a></i></li>
                                 </ul>
-                                <button style="background-color: #E5B907 ;" type="submit">Publish</button>
+                                <button style="background-color: rgb(0, 15, 103) ;" type="submit">Publish</button>
                             </div>
                         </form>
                     </div>
@@ -34,15 +34,15 @@
                             <img src="{{contenido.avatar.url}}" alt="" />
                             <span><b>{{contenido.username}} </b><br><p></p></span>
                             {% if  contenido.is_superuser %}
-                                <a href=" {% url 'inicio_app:enviar-solicitud' contenido.username %}" style="background-color: #E5B907; border-radius: 5px;" class="delete-friend">Añadir</a>
+                                <a href=" {% url 'inicio_app:enviar-solicitud' contenido.username %}" style="background-color: rgb(0, 15, 103);color: aliceblue; border-radius: 5px;" class="delete-friend">Añadir</a>
                             {% elif contenido  %}
-                            <a href=" {% url 'inicio_app:profile' contenido.username %}" class="delete-friend" style="background-color: #E5B907; border-radius: 5px;">Perfil</a>
+                            <a href=" {% url 'inicio_app:profile' contenido.username %}" class="delete-friend" style="background-color:rgb(0, 15, 103);  color: aliceblue; border-radius: 5px;">Perfil</a>
                             {% endif %}
                     {% else %}
                     {% if  contenido.is_superuser %}
                         <img src="{{contenido.avatar.url}}" alt="" />
                         <span><b>{{contenido.username}} </b><br><p></p></span>
-                            <a href=" {% url 'inicio_app:enviar-solicitud' contenido.username %}" style="background-color: #E5B907; border-radius: 5px;"  class="delete-friend">Añadir</a>
+                            <a href=" {% url 'inicio_app:enviar-solicitud' contenido.username %}" style="background-color: rgb(0, 15, 103); border-radius: 5px;"  class="delete-friend">Añadir</a>
                             
                     {% endif %}
                     {% endif %}
@@ -114,7 +114,7 @@
                     <div class="row_contain">
                         <img src="{{sug.avatar.url}} " alt="" />
                         <span><b><a href=" {% url 'inicio_app:sugerencia-amigo' %} ">{{sug.username}}</a></b><br></span>
-                        <button style="background-color: #E5B907 ;">+</button>
+                        <button style="background-color: rgb(0, 15, 103) ;">+</button>
                     </div>
                 {% endif %}
                 

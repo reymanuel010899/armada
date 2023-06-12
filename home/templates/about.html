@@ -118,23 +118,7 @@
             </ul>
         </div>
     </div>
-    <div class="row shadow">
-        <div class="row_title">
-            {% if user.id != personal.id %}
-            <span>Amigos </span>
-            <a href="{% url 'inicio_app:friend-añadidos' %}"> + {{totalamigos}} more..</a>
-            {% else %}
-            <h4>info personales</h4>
-            {% endif %}
-        </div>
-        {% for comun in amigos %}
-        <div class="row_contain">
-            <img src="{{comun.añadidos.avatar.url}} " alt="" />   
-            <span><a href="{% url 'inicio_app:perfil-about' comun.añadidos.username %} ">{{comun.añadidos.username}} </a><br></span>
-            <button style="background-color: #E5B907;">+</button>
-        </div>
-        {% endfor %}
-    </div>
+    
 </div>
 </div>
 {% endblock content %}

@@ -32,7 +32,7 @@ urlpatterns = [
     path('friend-añadidos/', views.amigos_añadidos, name="friend-añadidos"),
     path('chat-usuario/<username>/', views.chats_usuarios, name="chat-usuario"),
     path("ultimo-chat/", views.ultimos_chats, name="ultimo-chat"),
-    path('listar-notificaciones/', views.listar_notificaciones, name="listar-notificaciones"),
+    
     path("Settings/", views.Settings_views, name="Settings"),
     path("feed/<pk>/", views.feed_views, name="feed"),
     path("compartir-post/<pk>/", views.compartir_post, name="compartir-post"),

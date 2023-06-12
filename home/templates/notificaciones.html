@@ -60,27 +60,7 @@
     </center>
 </div>
 
-<div class="suggestions_row">
-    <div class="row shadow">
-    </div>
-    <div class="row shadow">
-        {% if user.is_superuser %}
-          
-      
-        <div class="row_title">
-            <span>Solicitudes pendientes...</span>
-        </div>
-        {% for noti in notificaciones  %}
-        {% if noti.solicitud %}
-        <div class="row_contain">
-            <img src="{{noti.solicitud.user.avatar.url}}" alt="" />
-            <span><a href="{% url 'inicio_app:friend' %} "><b>{{noti.solicitud.user.username}} </b></a><br>{{noti.solicitud.user.apellido}} </span>
-        </div>
-        {% endif %}
-        {% endfor %}
-        {% endif %}
-    </div>
-</div>
+
 </div>
 </div>
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>

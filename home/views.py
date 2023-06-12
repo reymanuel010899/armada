@@ -254,12 +254,6 @@ def ultimos_chats(request):
     return redirect('inicio_app:profile', username=user.username)
 
 
-@login_required(login_url='users_app:registrar')
-def listar_notificaciones(request):
-    if request.method == "GET":
-        notificaciones = NotificacionesModels.objects.notificaciones(request.user).order_by('-created')[:15]
-        return render(request, 'notificaciones.html', {"notificaciones":notificaciones, })
-
 
 
 def Settings_views(request):

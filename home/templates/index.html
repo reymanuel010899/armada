@@ -29,7 +29,7 @@
                             <div class="publish_icons">
                                 <ul> <input  type="file" name="files" id=""></a></i></li>
                                 </ul>
-                                <button style="background-color: #E5B907 ">Publish</button>
+                                <button style="background-color: rgb(0, 15, 103) ">Publish</button>
                             </div>
                         </form>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="feed">
                     <div class="feed_title">
                         <img src="{{post.user.avatar.url}} " alt="" />
-                        <span><a href="" style="color:#E5B907 ;">{{post.user.username}} </a> shared a <a href="{% url 'inicio_app:feed' post.id %} " style="color: #E5B907 ;">photo</a><br><p>{{post.created}} </p></span>
+                        <span><a href="" style="color:rgb(0, 15, 103) ;">{{post.user.username}} </a> shared a <a href="{% url 'inicio_app:feed' post.id %} " style="color:rgb(0, 15, 103) ;">photo</a><br><p>{{post.created}} </p></span>
                     </div>
                     
                     <div class="feed_content">
@@ -115,26 +115,8 @@
         </div>
         
         <div class="suggestions_row">
-            {% if user.is_superuser %}
+          
            
-            <div class="row shadow">
-                <div class="row_title">
-                    <span>sugerencias de amigos</span>
-                    <a href="{% url 'inicio_app:sugerencia-amigo'  %}">see more..</a>
-                </div>
-                {% for sug in sugerencia %}
-                {% if sug.is_superuser %}
-                <div class="row_contain">
-                    <img src="{{sug.avatar.url}} " alt="" />
-                    <span><b><a href=" {% url 'inicio_app:sugerencia-amigo' %} ">{{sug.username}}</a></b><br></span>
-                    <button style="background-color: #E5B907 ;">+</button>
-                </div>
-                {% endif %}
-                       
-                {% endfor %}
-            </div>
-               
-            {% endif %}
             <div class="row shadow">
                 {% if user.is_superuser %}
                 <div class="row_title">
@@ -151,46 +133,8 @@
                 {% endfor %}
                 {% endif %}
             </div>
-            <div class="row shadow">
-                <div class="row_title">
-                    <span>actividades recientes</span>
-                </div>
-                {% for noti in notificaciones  %}
-                {% if user.is_superuser %}
-                    {% if noti.amigo %}
-                        <div class="row_contain">
-                            <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
-                            <span><a href="" class="selected-blue">{{noti.mensaje}}</a>..</span>
-                        </div> 
-                    {% elif noti.solicitud %}
-                        <div class="row_contain">
-                            <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
-                            <span><a href="" class="selected-orange">{{noti.mensaje}} </a>..</span>
-                        </div>
-                    {% else %}
-                        {% if noti.amigo %}
-                        <div class="row_contain">
-                            <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
-                            <span><a href="{% url 'inicio_app:chat-usuario' noti.amigo.añadidos.username %} " class="selected-blue">{{noti.mensaje}}</a>..</span>
-                        </div> 
-                        {% elif noti.solicitud %}
-                        <div class="row_contain">
-                            <img src="{{noti.solicitud.user.avatar.url}} " alt="" />
-                            <span><a href="{% url 'inicio_app:agregar-amigos' noti.solicitud.user.username %} " class="selected-orange">{{noti.mensaje}} </a>..</span>
-                        </div>
-                        {% endif %}
-                    {% endif %}
-                {% else %}
-                        {% if noti.amigo %}
-                        <div class="row_contain">
-                            <img src="{{noti.amigo.añadidos.avatar.url}} " alt="" />
-                            <span><a href="{% url 'inicio_app:chat-usuario' noti.amigo.añadidos.username %} " class="selected-blue">{{noti.mensaje}}</a>..</span>
-                        </div> 
-                        {% endif %}
-                {% endif %}
-                {% endfor %}       
-            </div>
+            
         </div>
     </div>
-    <button style="background-color:  #E5B907 ;" onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
+    <button style="background-color:  rgb(0, 15, 103) ;" onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
 {% endblock content %}

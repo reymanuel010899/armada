@@ -20,15 +20,15 @@
     
 </head>
 <body style="background-color: rgb(255, 255, 255);">
-    <div class="navbar" style="background-color: darkgoldenrod;">
+    <div class="navbar" style="background-color: rgb(0, 15, 103);">
         <div class="navbar_menuicon" id="navicon">
             <i class="fa fa-navicon"></i>
         </div>
         <div class="navbar_logo">
             <img src="{% static 'images/logos.png' %}" alt="" />
         </div>
-        <div class="navbar_page" style="background-color: darkgoldenrod;">
-           <span><a href="{% url 'inicio_app:inicio' %}" style="color:#ffffff ;">Armada Dominicana</a></span> 
+        <div class="navbar_page" style="background-color: rgb(255, 255, 255);">
+           <span><a href="{% url 'inicio_app:inicio' %}" style="color:#000000 ;" id="cambiarcolor" >Armada Dominic</a></span> 
         </div>
         <div class="navbar_search">
             <form method="GET" action="{% url 'inicio_app:buscar-contenido' %} ">
@@ -40,7 +40,7 @@
             <ul>
                 <li><a href="{% url 'inicio_app:friend-añadidos'  %}" style="color:rgb(255, 255, 255)" class="fa fa-user-o"></a></li>
                 <li ><a href="{% url 'inicio_app:ultimo-chat' %}" style="color:rgb(255, 255, 255)" class="fa fa-comments-o"></a></li>
-                <a href="{% url 'inicio_app:listar-notificaciones' %}" style="color:rgb(255, 255, 255)"><li><i class="fa fa-globe"></i></li></a>
+         
             </ul>
         </div>
         <div class="navbar_user" >
@@ -119,29 +119,17 @@
        
             <div class="rowmenu" style=>
                 <ul>
-                    <li><a href="{% url 'inicio_app:inicio' %}" id="rowmenu-selected"><i class="fa fa-globe"></i>inicio</a></li>
+                    <li style="padding-top: 30%;"><a href="{% url 'inicio_app:inicio' %}" id="rowmenu-selected" ><i class="fa fa-globe"></i>inicio</a></li>
                     <li><a href=" {% url 'inicio_app:profile' user.username %} "><i class="fa fa-user"></i>Perfil</a></li>
-          
+                    {% if user.is_superuser %}
                     <li><a href="{% url 'inicio_app:friend-añadidos' %}"><i class="fa fa-users"></i>Aspirantes <span style="background-color: blueviolet;"> </span></a> </li>
-          
+                    {% else  %}
+                        <li><a hre="{% url 'inicio_app:friend-añadidos' %}"><i class="fa fa-users"></i>Personal<span style="background-color: blueviolet;"> </span></a> </li>
+                    {% endif %}
+                  
+                    <li class="primarymenu"><i class="fa fa-compass"></i><a href="{% url 'inicio_app:perfil-setting' %}">Ajustes</a></li>
+                    <li class="primarymenu"><i class="fa fa-user"></i><a href="{% url 'users_app:logout'%}">log out</a></li>
                    
-                    <li class="primarymenu"><i class="fa fa-compass"></i>Explore</li>
-                    <ul>
-                        <li style="border:none"><a href="{% url 'inicio_app:listar-notificaciones' %}">Notificaciones</a></li>
-                        {% if user.is_superuser %}
-                        <li style="border:none"><a href="{% url 'inicio_app:sugerencia-amigo' %}">Sugerencias de Amigos</a></li> 
-                        <li style="border:none"><a href="{% url 'inicio_app:friend' %}">Solicitudes<button type="button" class="btn btn-primary position-relative">
-                        {% endif %}
-                    
-                          </button> </a></li>
-                    
-                    </ul>
-                    <li class="primarymenu"><i class="fa fa-user"></i>Rapid Access</li>
-                    <ul>
-                        <li style="border:none"><a href="{% url 'inicio_app:perfil-setting' %}">Ajustes</a></li>
-                        <li style="border:none"><a href="{% url 'users_app:logout'%}">log out</a></li>
-            
-                    </ul>
                 </ul>
             </div>
         </div>
@@ -208,19 +196,10 @@
                 <li><a href="{% url 'inicio_app:inicio' %}"><i class="fa fa-globe"></i>Inicio</a></li>
                 <li><a href="{% url 'inicio_app:profile' user.username %}"><i class="fa fa-user"></i>Perfil</a></li>
                 <li><a href="{% url 'inicio_app:friend-añadidos' %}"><i class="fa fa-users"></i>Aspirantes</a></li>
-                <li><a href="{% url 'inicio_app:ultimo-chat' %}"><i class="fa fa-comments-o"></i>messages</a></li>
-                <li class="primarymenu"><i class="fa fa-compass"></i>Explore</li>
-                <ul class="mobilemenu_child">
-                    <li style="border:none"><a href="{% url 'inicio_app:listar-notificaciones' %}"><i class="fa fa-globe"></i>Notificaciones</a></li>
-                    {% if user.is_superuser %}
-                    <li style="border:none"><a href="{% url 'inicio_app:friend-añadidos'  %}"><i class="fa fa-file"></i>Solicitudes</a></li>
-                    {% endif %}
-                </ul>
-                <li class="primarymenu"><i class="fa fa-user"></i>Rapid Access</li>
-                <ul class="mobilemenu_child">
-                    <li style="border:none"><a href="{% url 'inicio_app:perfil-setting' %}"><i class="fa fa-star-o"></i>Ajustes</a></li>
-                    <li><a href="{% url 'users_app:logout'%}">Logout</a></li>
-                </ul>
+                <li><a href="{% url 'inicio_app:ultimo-chat' %}"><i class="fa fa-comments-o"></i>Mensajes</a></li>
+                <li style="border:none"><a href="{% url 'inicio_app:perfil-setting' %}"><i class="fa fa-star-o"></i>Ajustes</a></li>
+                <li><a href="{% url 'users_app:logout'%}">Logout</a></li>
+
             </ul>
                 
         </div>
@@ -279,6 +258,7 @@ $(document).ready(function(){
             document.getElementById("myBtn").style.display = "none";
         }
     }
+
 
     function topFunction() {
         document.body.scrollTop = 0;

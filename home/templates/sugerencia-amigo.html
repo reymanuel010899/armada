@@ -12,7 +12,7 @@
                 {% if solicitud.is_superuser %}
                 <div class="friend_title">
                     <img src="{{solicitud.avatar.url}} " alt="" />
-                    <span><b>{{solicitud.username}}</b><a  href=" {% url 'inicio_app:enviar-solicitud' solicitud.username %}"><br><span style="background-color:#E5B907 ; margin-left: 100%; border-radius: 5px;">Agregar</span></a> <p></p></span>
+                    <span><b>{{solicitud.username}}</b><a  href=" {% url 'inicio_app:enviar-solicitud' solicitud.username %}"><br><span style="background-color:rgb(0, 15, 103);color: aliceblue; margin-left: 100%; border-radius: 5px;">Agregar</span></a> <p></p></span>
                 </div>
                 {% endif %}
             
